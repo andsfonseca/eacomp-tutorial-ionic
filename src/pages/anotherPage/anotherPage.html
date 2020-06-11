@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Programação Completa
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-label>Veja aqui a programação completa</ion-label>
+  <ion-card *ngFor="let p of programacao">
+	  <ion-card-header>
+	    {{p.data}}
+	  </ion-card-header>
+	  <ion-card-content>
+	    <ion-grid>
+		  <ion-row *ngFor="let e of p.eventos">
+		    <ion-col col-3>{{e.hora}}</ion-col>
+		    <ion-col col-9>{{e.nome}}</ion-col>
+		  </ion-row>
+		</ion-grid>
+	  </ion-card-content>
+  </ion-card>
+</ion-content>

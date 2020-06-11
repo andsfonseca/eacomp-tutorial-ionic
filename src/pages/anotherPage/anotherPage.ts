@@ -1,29 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
-
-import { AnotherPage } from '../anotherPage/anotherPage';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-another',
+  templateUrl: 'anotherPage.html'
 })
-export class HomePage {
-
-	private data;
-	private eventosAtuais;
-	private temEvento;
-	private gosto;
-	private votou;
+export class AnotherPage {
 
 	programacao: Array<{data: string, eventos: Array<{nome: string, hora: string}> }>;
 
-  	constructor(public navCtrl: NavController, private storage: Storage) {
-
-  		var date = new Date();
-  		this.data = date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear();
-
-  		this.votou = false;
+  	constructor(public navCtrl: NavController) {
 
   		this.programacao = [
   			{data: '22/6/2017', eventos: [
@@ -58,32 +44,6 @@ export class HomePage {
   				{nome:'Premiação de Artigos', hora:"16h"}
   			]}
   		];
-
-  		this.temEvento = false;
-  		for (let entry of this.programacao) {
-    		if(entry.data == this.data){
-    			this.eventosAtuais = entry.eventos;
-    			this.temEvento = true;
-    		}
-		}
-
-		storage.get(this.data).then((val) => {
-			if(val!=null){
-	    		this.votou = true;
-	    		this.gostou = val;
-    		}
- 		});
-  	}
-
-  	gostou(value){
-
-  		if(value){	
-  			this.gosto = true;
-  		}
-  		else{
-  			this.gosto = false;
-  		}
-  		this.storage.set(this.data, this.gosto);
   	}
 
 }
